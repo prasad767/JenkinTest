@@ -12,4 +12,15 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+
+
+    @Test
+    public void add() throws Exception {
+        assertEquals(4, Utils.addNumber(2,2));
+    }
+
+    @Test
+    public void sub() throws Exception {
+        assertEquals(0, Utils.subNumber(2,2));
+    }
 }
