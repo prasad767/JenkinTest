@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.2'
-        //classpath"org.jacoco:org.jacoco.core:0.7.7.201606060606"
+        classpath"org.jacoco:org.jacoco.core:0.7.7.201606060606"
     }
 }
 apply plugin: 'com.android.application'
@@ -35,7 +35,7 @@ android {
 
         }
         release {
-            testCoverageEnabled = true
+            testCoverageEnabled = false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -44,9 +44,9 @@ android {
 
 }
 
-//jacoco {
-//    toolVersion = "0.7.7.201606060606"
-//}
+jacoco {
+    toolVersion = "0.7.7.201606060606"
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
