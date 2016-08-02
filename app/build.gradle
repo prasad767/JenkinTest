@@ -2,18 +2,23 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
+        jcenter()
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath"org.jacoco:org.jacoco.core:0.7.4.201502262128"
+        //classpath"org.jacoco:org.jacoco.core:0.7.7.201606060606"
     }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "23.0.3"
+
+    testBuildType "debug"
+
 
     defaultConfig {
         applicationId "com.prasad.jenkinstest"
@@ -21,13 +26,16 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         debug{
             testCoverageEnabled = true
+
         }
         release {
-            testCoverageEnabled = false
+            testCoverageEnabled = true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -36,23 +44,20 @@ android {
 
 }
 
-jacoco {
-    toolVersion = "0.7.7.201606060606"
-}
-
-
-/*jacocoTestReport {
-    reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination "${buildDir}/jacocoHtml"
-    }
-}*/
+//jacoco {
+//    toolVersion = "0.7.7.201606060606"
+//}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:24.1.1'
+
+    androidTestCompile 'com.android.support:support-annotations:24.1.1'
+    androidTestCompile 'com.android.support.test:runner:0.4'
+    compile group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
+
+
 }
 
 
